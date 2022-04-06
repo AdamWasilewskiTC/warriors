@@ -2,6 +2,7 @@ package com.company.classes;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 public abstract class CharacterClass implements BaseClass {
     public static int[][] occupiedCells = new int[321][321];
@@ -235,7 +236,14 @@ public abstract class CharacterClass implements BaseClass {
     }
 
     protected void reduceHealth(int amount) {
+        Random xy = new Random();
         setHealthPoints(this.getHealthPoints() - amount);
+        if(this.getHealthPoints() == 0) {
+            System.out.println("zginales xd");
+            this.x = xy.nextInt(321);
+            this.y = xy.nextInt(321);
+            this.healthPoints = maxHealthPoints;
+        }
     }
 
     public abstract void left();
@@ -245,4 +253,6 @@ public abstract class CharacterClass implements BaseClass {
     public abstract void up();
 
     public abstract void down();
+
+
 }
